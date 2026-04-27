@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
@@ -10,16 +9,14 @@
     <groupId>co.edu.poli.pyt</groupId>
     <artifactId>proyecto</artifactId>
     <version>1.0-SNAPSHOT</version>
-
     <name>proyecto</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.release>21</maven.compiler.release>  <!-- ✅ subido a 21 -->
         <javafx.version>21</javafx.version>
     </properties>
 
-    <!-- Manejo de versiones de JUnit -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -33,15 +30,12 @@
     </dependencyManagement>
 
     <dependencies>
-
-        <!-- JUnit -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
 
-        <!-- JavaFX -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -53,28 +47,30 @@
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version>
         </dependency>
-
     </dependencies>
 
     <build>
         <plugins>
-
-            <!-- Compilador Java -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
             </plugin>
 
-            <!-- Ejecutar tests -->
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.3.0</version>
                 <configuration>
                     <useModulePath>false</useModulePath>
                 </configuration>
+                <dependencies>  <!-- ✅ engine de JUnit agregado -->
+                    <dependency>
+                        <groupId>org.junit.jupiter</groupId>
+                        <artifactId>junit-jupiter-engine</artifactId>
+                        <version>5.11.0</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
-            <!-- Plugin JavaFX (CLAVE 🔥) -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -83,7 +79,6 @@
                     <mainClass>co.edu.poli.pyt.view.App</mainClass>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 
