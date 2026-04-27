@@ -1,52 +1,50 @@
 package co.edu.poli.pyt.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public class Ecuacion {
 
-    private String expresion;
+    private List<Integer> numeros; // solución
     private int resultado;
-    private List<Integer> numeros;
 
-    public Ecuacion(String expresion, int resultado, List<Integer> numeros) {
-        this.expresion = expresion;
-        this.resultado = resultado;
-        this.numeros = numeros;
+    public Ecuacion() {
+        generar();
     }
 
-    public static Ecuacion generarEcuacion() {
+    // Genera 4 números únicos entre 1 y 12
+    private void generar() {
 
-        Random random = new Random();
+        Set<Integer> set = new HashSet<>();
+        Random rand = new Random();
 
-        int a = random.nextInt(12) + 1;
-        int b = random.nextInt(12) + 1;
-        int c = random.nextInt(12) + 1;
-        int d = random.nextInt(12) + 1;
+        while (set.size() < 4) {
+            set.add(rand.nextInt(12) + 1);
+        }
 
-        int resultado = a + (b * c) - d;
-
-        String expresion = a + " + " + b + " * " + c + " - " + d;
-
-        List<Integer> numeros = new ArrayList<>();
-        numeros.add(a);
-        numeros.add(b);
-        numeros.add(c);
-        numeros.add(d);
-
-        return new Ecuacion(expresion, resultado, numeros);
+        numeros = new ArrayList<>(set);
+        resultado = calcularResultado(numeros);
     }
 
-    public int getResultado() {
-        return resultado;
+    // (a * b) - c + d
+    public int calcularResultado(List<Integer> nums) {
+        return (nums.get(0) * nums.get(1)) - nums.get(2) + nums.get(3);
     }
 
+    // Verifica si el intento da el mismo resultado
+    public boolean resultadoCorrecto(List<Integer> intento) {
+        return calcularResultado(intento) == resultado;
+    }
+
+    // Getters
     public List<Integer> getNumeros() {
         return numeros;
     }
 
-    public String getExpresion() {
-        return expresion;
+    public int getResultado() {
+        return resultado;
     }
 }

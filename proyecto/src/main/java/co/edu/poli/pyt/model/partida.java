@@ -1,107 +1,137 @@
 package co.edu.poli.pyt.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Partida {
 
-    private int id;
-    private EstadoJuego estado;
-    private int intentosRestantes;
-    private Ecuacion ecuacion;
-    private List<Intento> intentos;
-
-    public Partida(int id, Ecuacion ecuacion) {
-        this.id = id;
-        this.ecuacion = ecuacion;
-        this.estado = EstadoJuego.EN_PROGRESO;
-        this.intentosRestantes = 6;
-        this.intentos = new ArrayList<>();
+    // Enums internos (solo usados aquí)
+    public enum EstadoPartida {
+        EN_PROGRESO,
+        GANADA,
+        PERDIDA
     }
 
-    // 🔥 MÉTODO PRINCIPAL
-    public Resultado procesarIntento(List<Integer> numerosUsuario) {
+    public enum ColorFeedback {
+        VERDE,
+        AMARILLO,
+        GRIS
+    }
 
-        // 1. Validar tamaño
-        if (numerosUsuario == null || numerosUsuario.size() != 4) {
-            throw new IllegalArgumentException("Debe ingresar exactamente 4 números");
+    private Jugador jugador;
+    private Ecuacion ecuacion;
+    private int intentosRestantes;
+    private EstadoPartida estado;
+
+    private static final int MAX_INTENTOS = 6;
+
+    public Partida(Jugador jugador) {
+        this.jugador = jugador;
+        this.ecuacion = new Ecuacion();
+        this.intentosRestantes = MAX_INTENTOS;
+        this.estado = EstadoPartida.EN_PROGRESO;
+    }
+
+    // Método principal del juego
+    public List<ColorFeedback> intentar(List<Integer> intento) {
+
+        // 1. Validación (NO descuenta intento)
+        String error = validarIntento(intento);
+        if (error != null) {
+            System.out.println(error); // luego va en la UI
+            return null;
         }
 
-        // 2. Calcular resultado matemático
-        int calculo = numerosUsuario.get(0)
-                + (numerosUsuario.get(1) * numerosUsuario.get(2))
-                - numerosUsuario.get(3);
-
-        boolean esCorrectoMatematico = calculo == ecuacion.getResultado();
-
-        // 3. Generar feedback tipo Wordle
-        List<String> feedback = generarFeedback(numerosUsuario, ecuacion.getNumeros());
-
-        // 4. Verificar victoria
-        boolean aciertoTotal = numerosUsuario.equals(ecuacion.getNumeros());
-
-        // 5. Mensaje unificado
-        String mensaje;
-
-        if (aciertoTotal) {
-            mensaje = "Correcto";
-            estado = EstadoJuego.GANADO;
-        } else if (!esCorrectoMatematico) {
-            mensaje = "Resultado incorrecto";
-        } else {
-            mensaje = "Sigue intentando";
-        }
-
-        // 6. Crear resultado
-        Resultado resultado = new Resultado(aciertoTotal, feedback, mensaje);
-
-        // 7. Registrar intento
-        Intento intento = new Intento(numerosUsuario, resultado);
-        intentos.add(intento);
-
-        // 8. Reducir intentos
+        // 2. Cuenta intento
         intentosRestantes--;
 
-        // 9. Verificar derrota
-        if (intentosRestantes == 0 && !aciertoTotal) {
-            estado = EstadoJuego.PERDIDO;
+        // 3. Verifica resultado correcto
+        if (ecuacion.resultadoCorrecto(intento)) {
+
+            List<ColorFeedback> feedback = generarFeedback(intento);
+
+            // Si todos son verdes → gana
+            if (todosVerdes(feedback)) {
+                estado = EstadoPartida.GANADA;
+            }
+
+            return feedback;
         }
 
-        return resultado;
+        // 4. Si se queda sin intentos → pierde
+        if (intentosRestantes == 0) {
+            estado = EstadoPartida.PERDIDA;
+        }
+
+        // Intento válido pero sin feedback
+        return null;
     }
 
-    // 🔥 Feedback tipo Wordle (simple)
-    private List<String> generarFeedback(List<Integer> usuario, List<Integer> real) {
+    // Genera feedback tipo Wordle SOLO para números
+    private List<ColorFeedback> generarFeedback(List<Integer> intento) {
 
-        List<String> feedback = new ArrayList<>();
+        List<ColorFeedback> feedback = new ArrayList<>();
+        List<Integer> solucion = ecuacion.getNumeros();
 
-        for (int i = 0; i < usuario.size(); i++) {
+        for (int i = 0; i < solucion.size(); i++) {
 
-            if (usuario.get(i).equals(real.get(i))) {
-                feedback.add("VERDE");
-            } else if (real.contains(usuario.get(i))) {
-                feedback.add("AMARILLO");
+            if (intento.get(i).equals(solucion.get(i))) {
+                feedback.add(ColorFeedback.VERDE);
+            } else if (solucion.contains(intento.get(i))) {
+                feedback.add(ColorFeedback.AMARILLO);
             } else {
-                feedback.add("GRIS");
+                feedback.add(ColorFeedback.GRIS);
             }
         }
 
         return feedback;
     }
 
-    public EstadoJuego getEstado() {
-        return estado;
+    // Validaciones clave del intento
+    private String validarIntento(List<Integer> intento) {
+
+        if (intento == null || intento.size() != 4) {
+            return "Debes ingresar exactamente 4 números";
+        }
+
+        // Rango 1–12
+        for (int num : intento) {
+            if (num < 1 || num > 12) {
+                return "Número fuera de rango (1-12)";
+            }
+        }
+
+        // Sin repetidos
+        Set<Integer> set = new HashSet<>(intento);
+        if (set.size() != 4) {
+            return "No se permiten números repetidos";
+        }
+
+        return null;
     }
 
+    private boolean todosVerdes(List<ColorFeedback> feedback) {
+        for (ColorFeedback c : feedback) {
+            if (c != ColorFeedback.VERDE) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Getters
     public int getIntentosRestantes() {
         return intentosRestantes;
     }
 
-    public List<Intento> getIntentos() {
-        return intentos;
+    public EstadoPartida getEstado() {
+        return estado;
     }
 
-    public Ecuacion getEcuacion() {
-        return ecuacion;
+    public int getResultado() {
+        return ecuacion.getResultado();
+    }
+
+    public Jugador getJugador() {
+        return jugador;
     }
 }

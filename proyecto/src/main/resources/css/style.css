@@ -1,0 +1,84 @@
+/* Fondo general */
+.root {
+    -fx-background-color: #E5E7EB;
+}
+
+/* Títulos */
+.title {
+    -fx-font-size: 42px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111827;
+}
+
+.title-small {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+/* Subtítulo */
+.subtitle {
+    -fx-text-fill: #6B7280;
+}
+
+/* Botones */
+.btn-start {
+    -fx-background-color: #22C55E;
+    -fx-text-fill: white;
+    -fx-background-radius: 14;
+    -fx-padding: 12 50;
+}
+
+.btn-range-active {
+    -fx-background-color: #374151;
+    -fx-text-fill: white;
+    -fx-background-radius: 12;
+    -fx-padding: 12 40;
+}
+
+.btn-range {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+}
+
+.btn-delete {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-background-radius: 50;
+}
+
+.btn-icon {
+    -fx-background-color: transparent;
+}
+
+/* Tablero */
+.cell {
+    -fx-min-width: 45;
+    -fx-min-height: 45;
+    -fx-background-color: #D1D5DB;
+    -fx-background-radius: 10;
+}
+
+.operator {
+    -fx-text-fill: #374151;
+}
+
+.result {
+    -fx-background-color: #CBD5F5;
+    -fx-padding: 10;
+}
+
+/* Panel */
+.panel {
+    -fx-background-color: #F9FAFB;
+    -fx-padding: 25;
+    -fx-background-radius: 15;
+}
+
+/* Teclado */
+.key {
+    -fx-min-width: 55;
+    -fx-min-height: 55;
+    -fx-background-radius: 50;
+    -fx-border-color: #374151;
+    -fx-border-radius: 50;
+}

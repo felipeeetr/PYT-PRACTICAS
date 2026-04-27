@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="co.edu.poli.pyt.controller.InicioController"
+      alignment="CENTER"
+      spacing="20"
+      stylesheets="@../css/style.css"
+      styleClass="root">
+
+    <!-- TÍTULO -->
+    <Label text="Ooodle game" styleClass="title"/>
+
+    <!-- SUBTÍTULO -->
+    <Label text="Selecciona un rango" styleClass="subtitle"/>
+
+    <!-- BOTÓN RANGO (solo visual) -->
+    <Button text="1 - 12" styleClass="btn-range-active"/>
+
+    <!-- BOTÓN PRINCIPAL -->
+    <Button text="INICIAR PARTIDA"
+            styleClass="btn-start"
+            onAction="#iniciarJuego"/> <!-- conecta con controller -->
+
+</VBox>

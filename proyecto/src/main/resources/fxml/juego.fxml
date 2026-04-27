@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.poli.pyt.controller.JuegoController"
+            stylesheets="@../css/style.css"
+            styleClass="root">
+
+    <!-- HEADER -->
+    <top>
+        <HBox alignment="CENTER" spacing="50" styleClass="header">
+            <Button text="🏠" styleClass="btn-icon"/>
+            <Label text="Ooodle game" styleClass="title-small"/>
+            <Button text="Restart" styleClass="btn-range"/>
+        </HBox>
+    </top>
+
+    <!-- CONTENIDO -->
+    <center>
+        <HBox alignment="CENTER" spacing="60">
+
+            <!-- TABLERO -->
+            <VBox spacing="15" alignment="CENTER">
+
+                <!-- UNA FILA (duplicar 6 veces) -->
+                <HBox spacing="10" alignment="CENTER">
+                    <Label styleClass="cell"/>
+                    <Label text="×" styleClass="operator"/>
+                    <Label styleClass="cell"/>
+                    <Label text="-" styleClass="operator"/>
+                    <Label styleClass="cell"/>
+                    <Label text="+" styleClass="operator"/>
+                    <Label styleClass="cell"/>
+                    <Label text="=" styleClass="operator"/>
+                    <Label text="?" styleClass="result"/>
+                </HBox>
+
+            </VBox>
+
+            <!-- PANEL DERECHO -->
+            <VBox spacing="20" alignment="CENTER" styleClass="panel">
+
+                <HBox spacing="15">
+                    <Button text="Check" styleClass="btn-start"/>
+                    <Button text="Del" styleClass="btn-delete"/>
+                </HBox>
+
+                <!-- TECLADO -->
+                <GridPane hgap="15" vgap="15" alignment="CENTER">
+
+                    <!-- botones 1–12 -->
+                    <Button text="1" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="key"/>
+                    <Button text="2" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="key"/>
+                    <Button text="3" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="key"/>
+
+                    <Button text="4" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="key"/>
+                    <Button text="5" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="key"/>
+                    <Button text="6" GridPane.rowIndex="1" GridPane.columnIndex="2" styleClass="key"/>
+
+                    <Button text="7" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="key"/>
+                    <Button text="8" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="key"/>
+                    <Button text="9" GridPane.rowIndex="2" GridPane.columnIndex="2" styleClass="key"/>
+
+                    <Button text="10" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="key"/>
+                    <Button text="11" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="key"/>
+                    <Button text="12" GridPane.rowIndex="3" GridPane.columnIndex="2" styleClass="key"/>
+
+                </GridPane>
+
+            </VBox>
+
+        </HBox>
+    </center>
+
+</BorderPane>
