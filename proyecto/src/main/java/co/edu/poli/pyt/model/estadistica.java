@@ -1,5 +1,5 @@
 package co.edu.poli.pyt.model;
 
-public class estadistica {
+public class Estadistica {
     
 }

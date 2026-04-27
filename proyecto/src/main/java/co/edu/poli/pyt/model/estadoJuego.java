@@ -1,5 +1,7 @@
 package co.edu.poli.pyt.model;
 
-public class estadoJuego {
-    
+public enum  EstadoJuego {
+    EN_PROGRESO,
+    GANADO,
+    PERDIDO
 }
