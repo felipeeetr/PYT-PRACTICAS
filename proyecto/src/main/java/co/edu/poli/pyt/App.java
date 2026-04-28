@@ -1,4 +1,4 @@
-package co.edu.poli.pyt.view;
+package co.edu.poli.pyt;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
