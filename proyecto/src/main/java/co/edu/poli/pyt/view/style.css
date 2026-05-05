@@ -185,3 +185,66 @@
     -fx-text-fill: #991B1B;
     -fx-font-size: 17px;
 }
+
+.instructions-root {
+    -fx-background-color: #F9FAFB;
+    -fx-padding: 28;
+    -fx-pref-width: 520;
+}
+
+.instructions-title {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111827;
+}
+
+.instructions-section {
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111827;
+}
+
+.instructions-text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #374151;
+    -fx-wrap-text: true;
+}
+
+.instructions-equation {
+    -fx-background-color: #E5E7EB;
+    -fx-background-radius: 10;
+    -fx-padding: 10 14;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111827;
+}
+
+.instructions-note {
+    -fx-background-color: #DBEAFE;
+    -fx-background-radius: 10;
+    -fx-padding: 10 14;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1D4ED8;
+    -fx-wrap-text: true;
+}
+
+.legend-green,
+.legend-yellow,
+.legend-gray {
+    -fx-min-width: 22;
+    -fx-min-height: 22;
+    -fx-background-radius: 6;
+}
+
+.legend-green {
+    -fx-background-color: #22C55E;
+}
+
+.legend-yellow {
+    -fx-background-color: #FACC15;
+}
+
+.legend-gray {
+    -fx-background-color: #6B7280;
+}

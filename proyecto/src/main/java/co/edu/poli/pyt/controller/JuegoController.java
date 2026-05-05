@@ -16,7 +16,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -37,13 +36,33 @@ public class JuegoController {
     @FXML
     private Label intentosLabel;
 
+    @FXML
+    private Label r0c0, r0c1, r0c2, r0c3, r0Resultado;
+
+    @FXML
+    private Label r1c0, r1c1, r1c2, r1c3, r1Resultado;
+
+    @FXML
+    private Label r2c0, r2c1, r2c2, r2c3, r2Resultado;
+
+    @FXML
+    private Label r3c0, r3c1, r3c2, r3c3, r3Resultado;
+
+    @FXML
+    private Label r4c0, r4c1, r4c2, r4c3, r4Resultado;
+
+    @FXML
+    private Label r5c0, r5c1, r5c2, r5c3, r5Resultado;
+
     private Partida partida;
     private final List<List<Label>> casillas = new ArrayList<>();
+    private final List<Label> resultados = new ArrayList<>();
     private final List<Integer> intentoActual = new ArrayList<>();
     private int filaActual;
 
     @FXML
     public void initialize() {
+        enlazarTablero();
         reiniciarPartida();
     }
 
@@ -113,7 +132,7 @@ public class JuegoController {
         intentoActual.clear();
         resultadoLabel.setText(String.valueOf(partida.getResultado()));
         limpiarMensaje();
-        construirTablero();
+        limpiarTablero();
         actualizarIntentos();
     }
 
@@ -125,47 +144,33 @@ public class JuegoController {
         stage.show();
     }
 
-    private void construirTablero() {
-        tablero.getChildren().clear();
+    private void enlazarTablero() {
         casillas.clear();
+        resultados.clear();
 
-        for (int fila = 0; fila < MAX_INTENTOS; fila++) {
-            HBox filaTablero = new HBox(10);
-            filaTablero.setAlignment(javafx.geometry.Pos.CENTER);
+        casillas.add(List.of(r0c0, r0c1, r0c2, r0c3));
+        casillas.add(List.of(r1c0, r1c1, r1c2, r1c3));
+        casillas.add(List.of(r2c0, r2c1, r2c2, r2c3));
+        casillas.add(List.of(r3c0, r3c1, r3c2, r3c3));
+        casillas.add(List.of(r4c0, r4c1, r4c2, r4c3));
+        casillas.add(List.of(r5c0, r5c1, r5c2, r5c3));
 
-            List<Label> casillasFila = new ArrayList<>();
-            agregarCasilla(filaTablero, casillasFila);
-            agregarOperador(filaTablero, "*");
-            agregarCasilla(filaTablero, casillasFila);
-            agregarOperador(filaTablero, "-");
-            agregarCasilla(filaTablero, casillasFila);
-            agregarOperador(filaTablero, "+");
-            agregarCasilla(filaTablero, casillasFila);
-            agregarOperador(filaTablero, "=");
-            agregarResultado(filaTablero);
+        resultados.addAll(List.of(r0Resultado, r1Resultado, r2Resultado, r3Resultado, r4Resultado, r5Resultado));
+    }
 
-            casillas.add(casillasFila);
-            tablero.getChildren().add(filaTablero);
+    private void limpiarTablero() {
+        String resultado = String.valueOf(partida.getResultado());
+
+        for (List<Label> fila : casillas) {
+            for (Label casilla : fila) {
+                casilla.setText("");
+                casilla.getStyleClass().removeAll("cell-green", "cell-yellow", "cell-gray");
+            }
         }
-    }
 
-    private void agregarCasilla(HBox filaTablero, List<Label> casillasFila) {
-        Label casilla = new Label();
-        casilla.getStyleClass().add("cell");
-        casillasFila.add(casilla);
-        filaTablero.getChildren().add(casilla);
-    }
-
-    private void agregarOperador(HBox filaTablero, String operador) {
-        Label label = new Label(operador);
-        label.getStyleClass().add("operator");
-        filaTablero.getChildren().add(label);
-    }
-
-    private void agregarResultado(HBox filaTablero) {
-        Label resultado = new Label(String.valueOf(partida.getResultado()));
-        resultado.getStyleClass().add("result");
-        filaTablero.getChildren().add(resultado);
+        for (Label resultadoFila : resultados) {
+            resultadoFila.setText(resultado);
+        }
     }
 
     private void pintarFeedback(List<ColorFeedback> feedback) {

@@ -30,7 +30,51 @@
                     <Label fx:id="intentosLabel" styleClass="subtitle"/>
                 </HBox>
 
-                <VBox fx:id="tablero" spacing="12" alignment="CENTER"/>
+                <VBox fx:id="tablero" spacing="12" alignment="CENTER">
+                    <HBox spacing="10" alignment="CENTER">
+                        <Label fx:id="r0c0" styleClass="cell"/><Label text="*" styleClass="operator"/>
+                        <Label fx:id="r0c1" styleClass="cell"/><Label text="-" styleClass="operator"/>
+                        <Label fx:id="r0c2" styleClass="cell"/><Label text="+" styleClass="operator"/>
+                        <Label fx:id="r0c3" styleClass="cell"/><Label text="=" styleClass="operator"/>
+                        <Label fx:id="r0Resultado" styleClass="result"/>
+                    </HBox>
+                    <HBox spacing="10" alignment="CENTER">
+                        <Label fx:id="r1c0" styleClass="cell"/><Label text="*" styleClass="operator"/>
+                        <Label fx:id="r1c1" styleClass="cell"/><Label text="-" styleClass="operator"/>
+                        <Label fx:id="r1c2" styleClass="cell"/><Label text="+" styleClass="operator"/>
+                        <Label fx:id="r1c3" styleClass="cell"/><Label text="=" styleClass="operator"/>
+                        <Label fx:id="r1Resultado" styleClass="result"/>
+                    </HBox>
+                    <HBox spacing="10" alignment="CENTER">
+                        <Label fx:id="r2c0" styleClass="cell"/><Label text="*" styleClass="operator"/>
+                        <Label fx:id="r2c1" styleClass="cell"/><Label text="-" styleClass="operator"/>
+                        <Label fx:id="r2c2" styleClass="cell"/><Label text="+" styleClass="operator"/>
+                        <Label fx:id="r2c3" styleClass="cell"/><Label text="=" styleClass="operator"/>
+                        <Label fx:id="r2Resultado" styleClass="result"/>
+                    </HBox>
+                    <HBox spacing="10" alignment="CENTER">
+                        <Label fx:id="r3c0" styleClass="cell"/><Label text="*" styleClass="operator"/>
+                        <Label fx:id="r3c1" styleClass="cell"/><Label text="-" styleClass="operator"/>
+                        <Label fx:id="r3c2" styleClass="cell"/><Label text="+" styleClass="operator"/>
+                        <Label fx:id="r3c3" styleClass="cell"/><Label text="=" styleClass="operator"/>
+                        <Label fx:id="r3Resultado" styleClass="result"/>
+                    </HBox>
+                    <HBox spacing="10" alignment="CENTER">
+                        <Label fx:id="r4c0" styleClass="cell"/><Label text="*" styleClass="operator"/>
+                        <Label fx:id="r4c1" styleClass="cell"/><Label text="-" styleClass="operator"/>
+                        <Label fx:id="r4c2" styleClass="cell"/><Label text="+" styleClass="operator"/>
+                        <Label fx:id="r4c3" styleClass="cell"/><Label text="=" styleClass="operator"/>
+                        <Label fx:id="r4Resultado" styleClass="result"/>
+                    </HBox>
+                    <HBox spacing="10" alignment="CENTER">
+                        <Label fx:id="r5c0" styleClass="cell"/><Label text="*" styleClass="operator"/>
+                        <Label fx:id="r5c1" styleClass="cell"/><Label text="-" styleClass="operator"/>
+                        <Label fx:id="r5c2" styleClass="cell"/><Label text="+" styleClass="operator"/>
+                        <Label fx:id="r5c3" styleClass="cell"/><Label text="=" styleClass="operator"/>
+                        <Label fx:id="r5Resultado" styleClass="result"/>
+                    </HBox>
+                </VBox>
+
                 <Label fx:id="mensajeLabel" styleClass="message"/>
             </VBox>
 
@@ -44,15 +88,12 @@
                     <Button text="1" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="key" onAction="#seleccionarNumero"/>
                     <Button text="2" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="key" onAction="#seleccionarNumero"/>
                     <Button text="3" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="key" onAction="#seleccionarNumero"/>
-
                     <Button text="4" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="key" onAction="#seleccionarNumero"/>
                     <Button text="5" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="key" onAction="#seleccionarNumero"/>
                     <Button text="6" GridPane.rowIndex="1" GridPane.columnIndex="2" styleClass="key" onAction="#seleccionarNumero"/>
-
                     <Button text="7" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="key" onAction="#seleccionarNumero"/>
                     <Button text="8" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="key" onAction="#seleccionarNumero"/>
                     <Button text="9" GridPane.rowIndex="2" GridPane.columnIndex="2" styleClass="key" onAction="#seleccionarNumero"/>
-
                     <Button text="10" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="key" onAction="#seleccionarNumero"/>
                     <Button text="11" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="key" onAction="#seleccionarNumero"/>
                     <Button text="12" GridPane.rowIndex="3" GridPane.columnIndex="2" styleClass="key" onAction="#seleccionarNumero"/>

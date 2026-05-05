@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="14"
+      stylesheets="@style.css"
+      styleClass="instructions-root">
+
+    <Label text="Como jugar Ooodle" styleClass="instructions-title"/>
+
+    <Label text="El sistema genera una ecuacion secreta con 4 numeros diferentes entre 1 y 12." styleClass="instructions-text"/>
+    <Label text="La estructura siempre es: a * b - c + d = x" styleClass="instructions-equation"/>
+    <Label text="Tu objetivo es descubrir los numeros a, b, c y d en el orden correcto." styleClass="instructions-text"/>
+
+    <VBox spacing="6">
+        <Label text="Como jugar" styleClass="instructions-section"/>
+        <Label text="1. Selecciona 4 numeros usando el teclado." styleClass="instructions-text"/>
+        <Label text="2. Presiona Check para calificar el intento." styleClass="instructions-text"/>
+        <Label text="3. Cada intento cuenta, aunque tu ecuacion no produzca exactamente el resultado x." styleClass="instructions-text"/>
+        <Label text="4. Tienes 6 intentos para encontrar la ecuacion secreta." styleClass="instructions-text"/>
+    </VBox>
+
+    <VBox spacing="8">
+        <Label text="Colores" styleClass="instructions-section"/>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text=" " styleClass="legend-green"/>
+            <Label text="Verde: el numero esta en la posicion correcta." styleClass="instructions-text"/>
+        </HBox>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text=" " styleClass="legend-yellow"/>
+            <Label text="Amarillo: el numero existe, pero va en otra posicion." styleClass="instructions-text"/>
+        </HBox>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text=" " styleClass="legend-gray"/>
+            <Label text="Gris: el numero no hace parte de la solucion." styleClass="instructions-text"/>
+        </HBox>
+    </VBox>
+
+    <Label text="Reglas: solo se usan numeros del 1 al 12 y no se permiten repetidos en un intento." styleClass="instructions-note"/>
+</VBox>
