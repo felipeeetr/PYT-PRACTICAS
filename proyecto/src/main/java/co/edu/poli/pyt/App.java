@@ -11,7 +11,7 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
 
         FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/fxml/inicio.fxml")
+                getClass().getResource("/co/edu/poli/pyt/view/inicio.fxml")
         );
 
         Scene scene = new Scene(loader.load());

@@ -1,6 +1,7 @@
 package co.edu.poli.pyt.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -26,6 +27,7 @@ public class Ecuacion {
         }
 
         numeros = new ArrayList<>(set);
+        Collections.shuffle(numeros, rand);
         resultado = calcularResultado(numeros);
     }
 
