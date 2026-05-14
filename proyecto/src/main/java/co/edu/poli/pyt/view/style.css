@@ -248,3 +248,39 @@
 .legend-gray {
     -fx-background-color: #6B7280;
 }
+
+.login-panel {
+    -fx-background-color: #F9FAFB;
+    -fx-background-radius: 15;
+    -fx-padding: 22;
+}
+
+.login-field {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #D1D5DB;
+    -fx-padding: 10 12;
+}
+
+.login-message {
+    -fx-min-height: 24;
+    -fx-text-fill: #92400E;
+    -fx-font-weight: bold;
+}
+
+.scores-root {
+    -fx-background-color: #F9FAFB;
+    -fx-padding: 26;
+    -fx-pref-width: 760;
+}
+
+.scores-table {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
+.scores-table .column-header .label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111827;
+}

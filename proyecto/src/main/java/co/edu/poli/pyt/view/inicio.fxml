@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx"
@@ -14,12 +16,32 @@
 
     <Label text="Ooodle game" styleClass="title"/>
 
+    <VBox alignment="CENTER" spacing="10" styleClass="login-panel">
+        <Label text="Jugador" styleClass="subtitle"/>
+        <TextField fx:id="nombreField"
+                   promptText="Nombre de usuario"
+                   maxWidth="260"
+                   styleClass="login-field"/>
+
+        <HBox alignment="CENTER" spacing="12">
+            <Button text="INICIAR SESION"
+                    styleClass="btn-start"
+                    onAction="#iniciarConUsuario"/>
+
+            <Button text="INVITADO"
+                    styleClass="btn-range"
+                    onAction="#iniciarComoInvitado"/>
+        </HBox>
+
+        <Label fx:id="mensajeLabel" styleClass="login-message"/>
+    </VBox>
+
     <Button text="INSTRUCCIONES"
             styleClass="btn-instructions"
             onAction="#mostrarInstrucciones"/>
 
-    <Button text="INICIAR PARTIDA"
+    <Button text="VER PUNTAJES"
             styleClass="btn-start"
-            onAction="#iniciarJuego"/>
+            onAction="#verPuntajes"/>
 
 </VBox>

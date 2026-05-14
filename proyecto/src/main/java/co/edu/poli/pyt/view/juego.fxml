@@ -16,7 +16,10 @@
     <top>
         <HBox alignment="CENTER" spacing="45" styleClass="header">
             <Button text="Inicio" styleClass="btn-range" onAction="#volverInicio"/>
-            <Label text="Ooodle game" styleClass="title-small"/>
+            <VBox alignment="CENTER" spacing="4">
+                <Label text="Ooodle game" styleClass="title-small"/>
+                <Label fx:id="jugadorLabel" styleClass="subtitle"/>
+            </VBox>
             <Button text="Restart" styleClass="btn-range" onAction="#reiniciarPartida"/>
         </HBox>
     </top>

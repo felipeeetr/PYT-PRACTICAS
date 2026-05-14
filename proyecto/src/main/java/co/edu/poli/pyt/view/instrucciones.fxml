@@ -24,6 +24,14 @@
         <Label text="4. Tienes 6 intentos para encontrar la ecuacion secreta." styleClass="instructions-text"/>
     </VBox>
 
+    <VBox spacing="6">
+        <Label text="Puntuacion" styleClass="instructions-section"/>
+        <Label text="Si aciertas en el primer intento ganas 10 puntos." styleClass="instructions-text"/>
+        <Label text="Luego baja segun el intento: 8, 6, 4, 2 y 1 punto en el sexto intento." styleClass="instructions-text"/>
+        <Label text="Si inicias sesion, tus puntos se suman al puntaje total y se cuenta la partida ganada." styleClass="instructions-text"/>
+        <Label text="Si juegas como invitado, puedes jugar normal, pero el puntaje no se guarda." styleClass="instructions-text"/>
+    </VBox>
+
     <VBox spacing="8">
         <Label text="Colores" styleClass="instructions-section"/>
         <HBox spacing="10" alignment="CENTER_LEFT">

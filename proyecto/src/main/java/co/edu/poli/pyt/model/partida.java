@@ -20,16 +20,19 @@ public class Partida {
     }
 
     private static final int MAX_INTENTOS = 6;
+    private static final int[] PUNTOS_POR_INTENTO = { 10, 8, 6, 4, 2, 1 };
 
     private final Jugador jugador;
     private final Ecuacion ecuacion;
     private int intentosRestantes;
+    private int puntuacion;
     private EstadoPartida estado;
 
     public Partida(Jugador jugador) {
         this.jugador = jugador;
         this.ecuacion = new Ecuacion();
         this.intentosRestantes = MAX_INTENTOS;
+        this.puntuacion = 0;
         this.estado = EstadoPartida.EN_PROGRESO;
     }
 
@@ -44,6 +47,7 @@ public class Partida {
         List<ColorFeedback> feedback = generarFeedback(intento);
         if (todosVerdes(feedback)) {
             estado = EstadoPartida.GANADA;
+            puntuacion = calcularPuntuacion();
         } else if (intentosRestantes == 0) {
             estado = EstadoPartida.PERDIDA;
         }
@@ -96,8 +100,17 @@ public class Partida {
         return true;
     }
 
+    private int calcularPuntuacion() {
+        int intentosUsados = MAX_INTENTOS - intentosRestantes;
+        return PUNTOS_POR_INTENTO[intentosUsados - 1];
+    }
+
     public int getIntentosRestantes() {
         return intentosRestantes;
+    }
+
+    public int getPuntuacion() {
+        return puntuacion;
     }
 
     public EstadoPartida getEstado() {

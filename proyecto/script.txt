@@ -1,0 +1,13 @@
+
+Este script confirma la version de java porque Visual tiene algún conflicto
+
+$env:JAVA_HOME="C:\Program Files\Eclipse Adoptium\jdk-25.0.2.10-hotspot"
+$env:Path="$env:JAVA_HOME\bin;$env:Path"
+mvn -version
+
+
+Este script sirve para conectar con mis credenciales a la base de datos
+
+$env:DB_USER="root"
+$env:DB_PASSWORD="VacasCow1290"
+

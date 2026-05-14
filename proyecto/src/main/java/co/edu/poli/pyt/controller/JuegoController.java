@@ -1,6 +1,7 @@
 package co.edu.poli.pyt.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import co.edu.poli.pyt.model.Jugador;
 import co.edu.poli.pyt.model.Partida;
 import co.edu.poli.pyt.model.Partida.ColorFeedback;
 import co.edu.poli.pyt.model.Partida.EstadoPartida;
+import co.edu.poli.pyt.services.JugadorRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,6 +39,9 @@ public class JuegoController {
     private Label intentosLabel;
 
     @FXML
+    private Label jugadorLabel;
+
+    @FXML
     private Label r0c0, r0c1, r0c2, r0c3, r0Resultado;
 
     @FXML
@@ -55,6 +60,8 @@ public class JuegoController {
     private Label r5c0, r5c1, r5c2, r5c3, r5Resultado;
 
     private Partida partida;
+    private Jugador jugador;
+    private final JugadorRepository jugadorRepository = new JugadorRepository();
     private final List<List<Label>> casillas = new ArrayList<>();
     private final List<Label> resultados = new ArrayList<>();
     private final List<Integer> intentoActual = new ArrayList<>();
@@ -63,6 +70,11 @@ public class JuegoController {
     @FXML
     public void initialize() {
         enlazarTablero();
+        reiniciarPartida();
+    }
+
+    public void configurarJugador(Jugador jugador) {
+        this.jugador = jugador;
         reiniciarPartida();
     }
 
@@ -127,10 +139,12 @@ public class JuegoController {
 
     @FXML
     private void reiniciarPartida() {
-        partida = new Partida(new Jugador(1, "Jugador"));
+        Jugador jugadorPartida = jugador != null ? jugador : new Jugador(0, "Invitado");
+        partida = new Partida(jugadorPartida);
         filaActual = 0;
         intentoActual.clear();
         resultadoLabel.setText(String.valueOf(partida.getResultado()));
+        actualizarJugador();
         limpiarMensaje();
         limpiarTablero();
         actualizarIntentos();
@@ -192,7 +206,7 @@ public class JuegoController {
         actualizarIntentos();
 
         if (partida.getEstado() == EstadoPartida.GANADA) {
-            mostrarMensaje("Ganaste. Encontraste la ecuacion.", "message-win");
+            guardarVictoria();
         } else if (partida.getEstado() == EstadoPartida.PERDIDA) {
             mostrarMensaje("Perdiste. La ecuacion era " + formatearSolucion() + ".", "message-loss");
         }
@@ -200,6 +214,30 @@ public class JuegoController {
 
     private void actualizarIntentos() {
         intentosLabel.setText("Intentos: " + partida.getIntentosRestantes());
+    }
+
+    private void actualizarJugador() {
+        if (jugador == null) {
+            jugadorLabel.setText("Invitado");
+        } else {
+            jugadorLabel.setText("Jugador: " + jugador.getNombre() + " | ID: " + jugador.getId());
+        }
+    }
+
+    private void guardarVictoria() {
+        int puntos = partida.getPuntuacion();
+
+        if (jugador == null) {
+            mostrarMensaje("Ganaste. Puntos de esta partida: " + puntos + " (invitado, no se guarda).", "message-win");
+            return;
+        }
+
+        try {
+            jugadorRepository.registrarVictoria(jugador, puntos);
+            mostrarMensaje("Ganaste. Sumaste " + puntos + " puntos.", "message-win");
+        } catch (SQLException e) {
+            mostrarMensaje("Ganaste, pero no se pudo guardar el puntaje.", "message-error");
+        }
     }
 
     private boolean partidaEnProgreso() {
