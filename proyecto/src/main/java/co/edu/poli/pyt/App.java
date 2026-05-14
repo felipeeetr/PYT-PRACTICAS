@@ -7,6 +7,10 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
+    /** 
+     * @param stage
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -21,6 +25,9 @@ public class App extends Application {
         stage.show();
     }
 
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         launch();
     }
